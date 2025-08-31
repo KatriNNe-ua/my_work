@@ -1,0 +1,137 @@
+.talk {
+	background-color: $bgColor;
+	@include adaptiveValue("padding-top", 103, 60);
+	@include adaptiveValue("padding-bottom", 116, 20);
+
+	&__holder {
+		max-width: toRem(654);
+		width: 100%;
+		text-align: center;
+		// max-width: toRem(654);
+		margin-inline: auto;
+		position: relative;
+		@include adaptiveValue("margin-bottom", 80, 30);
+		z-index: 2;
+	}
+	// .talk__info-block
+
+	&__info-block {		
+		margin-inline: auto;
+		text-align: center;
+		position: relative;
+		z-index: 2;
+		border-radius: toRem(16);
+		background: $bgColorLight;
+		box-shadow: 0px toRem(2) toRem(24) 0px rgba(88, 126, 236, 0.15);
+		padding: toRem(28) toRem(81);
+		display: flex;
+		align-items: center;
+		justify-content: space-evenly;
+		flex-wrap: wrap;
+		row-gap: toRem(15);
+		column-gap: toRem(30);
+		@include adaptiveValue("padding-inline", 81, 30);
+			@media (min-width: toEm(494)) {
+				justify-content: space-between;
+			}
+	}
+
+	// .talk__item
+
+	&__item {
+	}
+
+	// .talk__number
+
+	&__number {
+		color: $acсentColor;
+		text-align: center;
+		font-weight: 700;
+		letter-spacing: toRem(5.04);
+		@include adaptiveValue("font-size", 36, 25);
+		margin-bottom: toRem(4);
+	}
+
+	// .talk__desk
+
+	&__desk {
+		color: #000;
+		text-align: center;
+		font-size: toRem(11);
+		font-weight: 700;
+		letter-spacing: toRem(4.07);
+		text-transform: uppercase;
+	}
+	&__decor {
+		position: absolute;
+		border-radius: toRem(30);
+		background: $acсentColor;
+		z-index: 1;
+		@media (max-width: toEm(494)){
+			display: none;
+
+		}
+		&--1 {
+			transform: rotate(-30deg);
+			border-radius: toRem(16);
+			// width: 7.5%; /* 66/654 */
+			width: 10.091743%; /* 66/654 */
+			aspect-ratio: 1;
+			bottom: -15%;
+			left: -2.5%;
+		}
+		&--2 {
+			transform: rotate(105deg);
+			// width: 12.2%;
+			width: 14.831804%; /* 97/654 */
+			aspect-ratio: 1;
+			left: 35%;
+			top: -30%;
+		}
+		&--3 {
+			transform: rotate(-30deg);
+			// width: 14.5%; /* 127/1088 */
+			width: 19.41896%; /* 127/654 */
+			aspect-ratio: 1;
+			right: -5%;
+			top: 0%;
+		}
+	}
+
+	// .talk__wrapper
+
+	&__wrapper {
+		display: grid;
+		gap: toRem(20);
+		align-items: center;
+		justify-content: space-between;
+		@media (min-width: toEm(740)) {
+			grid-template-columns: 403fr 522fr;
+		}
+	}
+	&__content-block {
+		@media (min-width: toEm(740)) {
+			@include adaptiveValue("padding-left", 39, 0);
+		}
+	}
+
+	// .talk__video
+
+	&__video {
+		width: 100%;
+		aspect-ratio: 522/284;
+		border-radius: toRem(8);
+		border: toRem(1) solid $textColorMain;
+		position: relative;
+		// overflow: hidden;
+		box-shadow: 0px toRem(4) toRem(18) 0px rgba(88, 126, 236, 0.18);
+
+		iframe {
+			border-radius: toRem(8);
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			inset: 0;
+		}
+	}
+}

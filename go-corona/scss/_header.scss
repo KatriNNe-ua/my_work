@@ -1,0 +1,230 @@
+@use "sass:math";
+.header {
+	animation-name: head;
+	animation-duration: 2s;
+	animation-fill-mode: forwards;
+	animation-timing-function: linear;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: 50;
+	@include adaptiveValue("padding-block", 37, 10);
+	// .header__container
+	&__container {
+
+		display: grid;
+		grid-template-columns: auto 1fr toRem(152);
+		align-items: center;
+		column-gap: toRem(20);
+		@media (min-width: toEm(800)) {
+			grid-template-columns: auto 1fr toRem(252);
+				column-gap: toRem(40);
+		}
+		@media (max-width: toEm(660)) {
+			grid-template-columns: auto 1fr;
+		}
+		@media (max-width: toEm(370)) {
+			grid-template-columns: 40px 1fr;
+		}
+	}
+	// .header__menu
+	&__menu {
+		justify-self: end;
+	}
+
+	// .header__actions
+	&__actions {
+		justify-self: end;
+		display: flex;
+		gap: toRem(20);
+		align-items: center;
+		justify-content: end;
+		@media (max-width: toEm(660)) {
+			justify-self: stretch;
+		}
+	}
+
+	// .header__btn-menu
+	&__btn-menu {
+		position: relative;
+		z-index: 5;
+		display: none;
+		@media (max-width: toEm(660)) {
+			display: flex;
+			max-width: toRem(30);
+			width: 100%;
+			align-items: center;
+			justify-content: center;
+			flex-shrink: 0;
+			flex-direction: column;
+			&::before {
+				content: "";
+				width: 100%;
+				height: toRem(2);
+				background-color: $colorDark;
+				transition: all 0.3s;
+				.open-menu & {
+					transform: rotate(-45deg) translateY(1.5px);
+				}
+			}
+			&::after {
+				content: "";
+				width: 100%;
+				height: toRem(2);
+				background-color: $colorDark;
+				transition: all 0.3s;
+				.open-menu & {
+					width: 100%;
+					transform: rotate(45deg) translateY(-1.5px);
+				}
+			}
+			span {
+				width: 100%;
+				height: toRem(2);
+				background-color: $colorDark;
+				margin-block: toRem(6);
+				transition: all 0.3s;
+				.open-menu & {
+					width: 0;
+					height: 0;
+					margin: 0;
+					background-color: transparent;
+				}
+			}
+		}
+	}
+}
+.logo {
+	position: relative;
+	z-index: 5;
+	width: toRem(140);
+	aspect-ratio: 140/40;
+	@media (max-width: toEm(370)) {
+		// width: toRem(40);
+		overflow: hidden;
+		clip-path: inset(0px 100px 0px 0px);
+	}
+	// .logo__img
+	&__img {
+		width: 100%;
+		height: 100%;
+		object-fit: contain;
+	}
+}
+.menu {
+	position: relative;
+	z-index: 3;
+	.open-menu & {
+		left: 0;
+	}
+	@media (max-width: toEm(660)) {
+		position: fixed;
+		top: 0;
+		left: 100%;
+		width: 100%;
+		height: 100%;
+		padding: toRem(100) toRem(15) toRem(30);
+		z-index: 3;
+		background-color: $bgColor;
+		overflow: auto;
+		transition: all 0.3s;
+	}
+	&::before {
+		@media (max-width: toEm(660)) {
+			content: "";
+			width: 100%;
+			height: toRem(80);
+			position: fixed;
+			left: 100%;
+			top: 0;
+			transition: all 0.3s;
+			background-color: $bgColor;
+			z-index: 4;
+		}
+		.open-menu & {
+			left: 0;
+		}
+	}
+
+	&__list {
+		display: flex;
+		column-gap: toRem(20);
+		row-gap: toRem(5);
+		color: $colorDark;
+		font-family: "Raleway", sans-serif;
+		font-size: toRem(10);
+		font-weight: 700;
+		letter-spacing: toRem(1.4);
+		text-transform: uppercase;
+		@media (min-width: toEm(860)) {
+			column-gap: toRem(40);
+		}
+		@media (max-width: toEm(660)) {
+			gap: toRem(35);
+			align-items: flex-end;
+			justify-content: flex-start;
+			flex-direction: column;
+			flex-wrap: nowrap;
+			font-size: toRem(22);
+		}
+	}
+	// .menu__link
+	&__link {
+		transition: color 0.3s;
+		position: relative;
+		&::after {
+			content: "";
+			position: absolute;
+			inset-block-end: toRem(-5);
+			inset-inline-start: 50%;
+			transform: translateX(-50%);
+			inline-size: 0%;
+			block-size: toRem(2);
+			border-radius: toRem(3);
+			background-color: $acсentColor;
+			transition: all 0.3s;
+		}
+		@media (any-hover: hover) {
+			&:hover::after {
+				inline-size: 100%;
+			}
+		}
+	}
+}
+.btn {
+	position: relative;
+	z-index: 5;
+	color: $textColorBtn;
+	font-family: "Raleway", sans-serif;
+	font-size: toRem(10);
+	font-weight: 800;
+	letter-spacing: toRem(1.4);
+	border-radius: toRem(5);
+	padding: toRem(14) toRem(30);
+	transition: background-color 0.3s;
+	background-color: $acсentColor;
+	text-transform: uppercase;
+	text-align: center;
+	@media (any-hover: hover) {
+		&:hover {
+			background-color: #ea0e0e;
+		}
+	}
+
+	&--blue {
+		background-color: $acсentColor2;
+		@media (any-hover: hover) {
+			&:hover {
+				background-color: #5d4cd7;
+			}
+		}
+		
+	}
+	&--wide{
+		@media (max-width: toEm(450)){
+			width: 100%;
+		}
+		
+	}
+}

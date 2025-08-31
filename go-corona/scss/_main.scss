@@ -1,0 +1,75 @@
+$acсentColor: #ec5863;
+$acсentColor2: #4285f4;
+$bgColorLight: #fff;
+$bgColor: #fafbfd;
+$colorDark: #000;
+$textColorMain: #616161;
+$textColorBtn: #fcfdfe;
+$textColorLight: #b0b0b0;
+
+body {
+	font-family: "Rubik", sans-serif;
+	.open-menu & {
+		overflow: hidden;
+	}
+}
+.wrapper {
+	min-height: 100%;
+	overflow: clip;
+	display: flex;
+	flex-direction: column;
+	background-color: $bgColor;
+	main {
+		flex-grow: 1;
+	}
+}
+
+[class*="__container"] {
+	max-width: toRem(1088);
+	margin-inline: auto;
+	padding-inline: toRem(15);
+}
+@keyframes head {
+	0% {
+		top: -20%;
+		opacity: 0;
+	}
+	100% {
+		top: 0;
+		opacity: 1;
+	}
+}
+@keyframes hero {
+	0% {
+		transform: translateY(toRem(10));
+		opacity: 0;
+	}
+	100% {
+			transform: translateY(0);
+		opacity: 1;
+	}
+}
+@keyframes video {
+	0% {
+		transform: translateX(toRem(-60));
+		opacity: 0;
+	}
+	100% {
+			transform: translateX(0);
+		opacity: 1;
+	}
+}
+@keyframes decor {
+	0% {
+		transform: scale(1);
+	}
+	50% {
+		transform: scale(1.1);
+	
+	}
+	100% {
+		transform: scale(1);
+	}
+}
+
+

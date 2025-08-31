@@ -1,0 +1,187 @@
+@use "sass:math";
+.hero {
+	position: relative;
+
+	// .hero__container
+	&__container {
+		position: relative;
+		@include adaptiveValue("padding-top", 162, 90);
+		@include adaptiveValue("padding-bottom", 48, 20);
+		&::before {
+			content: "";
+			position: absolute;
+			width: 100vw;
+			height: 100%;
+			background-color: $acсentColor;
+			top: 0;
+			left: 79%;
+			border-radius: toRem(30) 0px 0px toRem(30);
+			z-index: 1;
+			@media (min-width: toEm(800)) {
+				left: 75.46%;
+			}
+			@media (max-width: toEm(740)) {
+				display: none;
+			}
+		}
+	}
+
+	// .hero__wrapper
+	&__wrapper {
+		position: relative;
+		z-index: 2;
+		display: grid;
+		gap: toRem(20);
+		align-items: center;
+		@include adaptiveValue("margin-bottom", 60, 10);
+		@media (min-width: toEm(870)) {
+			column-gap: toRem(70);
+		}
+		@media (min-width: toEm(740)) {
+			grid-template-columns: 419fr 565fr;
+		}
+	}
+
+	// .hero__content-block
+	&__content-block {
+		@media (min-width: toEm(740)) {
+			padding-left: toRem(17);
+			animation-name: hero;
+			animation-timing-function: linear;
+			animation-delay: 3.5s;
+			animation-fill-mode: forwards;
+			animation-duration: 1s;
+			opacity: 0;
+		}
+	}
+
+	// .hero__img
+
+	&__img {
+		max-width: toRem(547);
+		width: 100%;
+		aspect-ratio: 547/394;
+		justify-self: center;
+		@media (min-width: toEm(740)) {
+			animation-name: hero;
+			animation-timing-function: linear;
+			animation-delay: 2s;
+			animation-fill-mode: forwards;
+			animation-duration: 1s;
+			opacity: 0;
+		}
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: contain;
+		}
+	}
+
+	// .hero__watch-video
+
+	&__watch-video {
+		display: grid;
+		grid-template-columns: auto auto;
+		column-gap: toRem(12);
+		row-gap: toRem(5);
+		align-items: end;
+		justify-content: start;
+		@media (min-width: toEm(740)) {
+			animation-name: video;
+			animation-timing-function: linear;
+			animation-delay: 4s;
+			animation-fill-mode: forwards;
+			animation-duration: 1s;
+			opacity: 0;
+			transform: translateX(toRem(-60));
+		}
+	}
+
+	// .hero__video-link
+
+	&__video-link {
+		grid-row: span 2;
+		max-width: toRem(44);
+		aspect-ratio: 1;
+		transition: box-shadow 0.3s;
+		border-radius: 50%;
+		&:hover {
+			box-shadow: 0px 0px toRem(5) #5c4cd7;
+		}
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: contain;
+		}
+	}
+
+	// .hero__slogan
+
+	&__slogan {
+		color: $textColorLight;
+		font-size: toRem(13);
+		line-height: 1.26;
+		letter-spacing: toRem(1.04);
+	}
+
+	// .hero__play
+
+	&__play {
+		align-self: start;
+		color: $colorDark;
+		font-size: toRem(9);
+		line-height: 1.26;
+		letter-spacing: toRem(1.485);
+		text-transform: uppercase;
+	}
+}
+.block-content {
+	// .block-content__title
+	&--shot {
+		@media (min-width: toEm(740)) {
+			max-width: toRem(400);
+		}
+	}
+	&--center {
+		text-align: center;
+	}
+	&__title {
+		color: $colorDark;
+		font-size: toRem(44);
+		font-weight: 700;
+		line-height: 1.26;
+
+		@include adaptiveValue("font-size", 44, 30);
+		&:not(:last-child) {
+			margin-bottom: toRem(12);
+		}
+		&--red {
+			span {
+				color: $acсentColor;
+			}
+		}
+		&--blue {
+			span {
+				color: $acсentColor2;
+			}
+		}
+	}
+
+	// .block-content__text
+	&__text {
+		color: $textColorMain;
+		font-size: toRem(12);
+		line-height: 1.38;
+		letter-spacing: toRem(0.96);
+		&:not(:last-child) {
+			margin-bottom: toRem(24);
+		}
+		p:not(:last-child) {
+			margin-bottom: toRem(6);
+		}
+		&--shot {
+			max-width: toRem(600);
+			margin-inline: auto;
+		}
+	}
+}
