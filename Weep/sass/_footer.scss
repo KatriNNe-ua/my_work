@@ -1,0 +1,104 @@
+@use "_mixins.scss" as *;
+
+.footer {
+	background-color: var(--main-color-white);
+	color: var(--main-bg);
+	border-top: toRem(1) solid var(--grey-color);
+	&__container {
+	}
+	&__body {
+		padding-block: toRem(48);
+		display: flex;
+		gap: toRem(48);
+		justify-content: space-between;
+		flex-wrap: wrap;
+	}
+	&__logo {
+		flex-basis: toRem(210);
+		font-size: toRem(32);
+		font-weight: 700;
+		line-height: 1.1;
+		transition: all 0.3s;
+		@media (any-hover: hover) {
+			&:hover {
+				text-decoration: underline;
+			}
+		}
+
+		@media (max-width: toEm(1300)) {
+			flex-basis: 100%;
+			text-align: center;
+		}
+	}
+	&__nav {
+	}
+	&__bottom {
+		border-top: toRem(1) solid var(--grey-color);
+		padding-block: toRem(48);
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		gap: toRem(24);
+		flex-wrap: wrap;
+		@media (max-width: toEm(515)) {
+			flex-direction: column;
+			text-align: center;
+		}
+	}
+	&__copy {
+		font-size: toRem(16);
+		font-weight: 400;
+		line-height: 1.4;
+	}
+	&__social {
+		display: flex;
+		gap: toRem(16);
+		align-items: center;
+		transform: all 0.3s;
+		img {
+			vertical-align: middle;
+			@media (any-hover: hover) {
+				&:hover {
+					transform: scale(1.2);
+				}
+			}
+		}
+	}
+}
+.nav-footer {
+	flex-basis: toRem(218);
+	@media (max-width: toEm(515)) {
+		flex-basis: 100%;
+		text-align: center;
+	}
+	&__title {
+		color: var(--grey-color2);
+		font-size: toRem(16);
+		font-weight: 500;
+		line-height: 1.1;
+		&:not(:last-child) {
+			margin-bottom: toRem(24);
+		}
+	}
+	&__list {
+	}
+	&__item {
+		&:not(:last-child) {
+			margin-bottom: toRem(24);
+		}
+	}
+	&__link {
+		font-size: toRem(16);
+		line-height: 1.4%;
+		transition: all 0.3s;
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+}
+.social {
+	&__item {
+	}
+	&__link {
+	}
+}
