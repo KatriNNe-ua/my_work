@@ -1,0 +1,185 @@
+@mixin img($wh, $ht, $of) {
+	width: $wh;
+	height: $ht;
+	object-fit: $of;
+}
+.header {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: 50;
+			@include adaptiveValue("padding-block", , );
+
+	// .header__container
+	&__container {
+		display: grid;
+		grid-template-columns: ;
+		align-items: center;
+		@include adaptiveValue("column-gap", , );
+		@media (min-width: toEm()) {
+			grid-template-columns: ;
+		}
+	}
+
+	// .header__menu
+	&__menu {
+		
+	}
+
+	// .header__actions
+	&__actions {
+		display: flex;		
+		align-items: center;
+		justify-content: flex-end;
+		@media (max-width: toEm()) {
+			justify-self: stretch;
+			gap: toRem();
+		}
+	}
+
+	// .header__btn-menu
+	&__btn-menu {
+		position: relative;
+		z-index: 5;
+		display: none;
+		@media (max-width: toEm()) {
+			display: flex;
+			max-width: toRem(30);
+			width: 100%;
+			align-items: center;
+			justify-content: center;
+			flex-shrink: 0;
+			flex-direction: column;
+			&::before {
+				content: "";
+				width: 100%;
+				height: toRem(2);
+				background-color: #000;
+				transition: all 0.3s;
+				.open-menu & {
+					transform: rotate(-45deg) translateY(toRem(1.5));
+				}
+			}
+			&::after {
+				content: "";
+				width: 100%;
+				height: toRem(2);
+				background-color: #000;
+				transition: all 0.3s;
+				.open-menu & {
+					width: 100%;
+					transform: rotate(45deg) translateY(toRem(-1.5));
+				}
+			}
+			span {
+				width: 100%;
+				height: toRem(2);
+				background-color: #000;
+				margin-block: toRem(6);
+				transition: all 0.3s;
+				.open-menu & {
+					display: none;
+				}
+			}
+		}
+	}
+}
+
+// Logo
+.logo {
+	position: relative;
+	z-index: 5;
+	max-width: toRem();
+	width: 100%;
+	aspect-ratio: ;
+	// .logo__img
+	&__img {
+	@include img(100%, 100%, contain);
+	}
+}
+// Menu
+.menu {
+	position: relative;
+	z-index: 3;
+	.open-menu & {
+		left: 0;
+	}
+	@media (max-width: toEm()) {
+		position: fixed;
+		top: 0;
+		left: 100%;
+		width: 100%;
+		height: 100%;
+		padding: toRem(100) toRem(15) toRem(30);
+		z-index: 3;
+		background-color: #fff;
+		overflow: auto;
+		transition: all 0.3s;
+	}
+	&::before {
+		@media (max-width: toEm()) {
+			content: "";
+			width: 100%;
+			height: toRem();
+			position: absolute;
+			inset: 0;
+			background-color: #fff;
+			z-index: 4;
+		}
+		.open-menu & {
+			left: 0;
+		}
+	}
+
+	&__list {
+		display: flex;
+		flex-wrap: wrap;
+		row-gap: toRem();
+        @include adaptiveValue("column-gap", , );
+		@media (max-width: toEm()) {
+			gap: toRem(35);
+			align-items: flex-end;
+			justify-content: flex-start;
+			flex-direction: column;
+			flex-wrap: nowrap;
+			font-size: toRem(22);
+		}
+	}
+
+
+	// .menu__link
+	&__link {
+		transition: all 0.3s;
+		position: relative;
+		// hover
+		&::after {
+			content: "";
+			position: absolute;
+			inset-block-end: toRem(-5);
+			inset-inline-start: 50%;
+			transform: translateX(-50%);
+			inline-size: 0%;
+			block-size: toRem(2);
+			border-radius: toRem(3);
+			background-color: ;
+			transition: all 0.3s;
+		}
+		@media (any-hover: hover) {
+			&:hover::after {
+				inline-size: 100%;
+			}
+		}
+	}
+}
+
+// Btn
+.btn {
+	position: relative;
+	z-index: 5;
+		@media (any-hover: hover) {
+		&:hover {
+			
+		}
+	}
+}

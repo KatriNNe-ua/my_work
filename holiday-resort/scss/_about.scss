@@ -1,0 +1,30 @@
+.about {
+	background-color: var(--mainLightColor);
+	@include adaptiveValue("padding-block", 64, 25);
+
+	// .about__container
+
+	&__container {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		@include adaptiveValue("gap", 32, 20);
+	}
+
+	// .about__text
+
+	&__text {
+		max-width: toRem(598);
+		color: var(--darkColor);
+		text-align: center;
+		font-size: 20px;
+		line-height: 1.5; /* 30px */
+		letter-spacing: toRem(1);
+		@media (max-width: toEm(500)) {
+			font-size: toRem(16);
+		}
+		p:not(:last-child) {
+			margin-bottom: toRem(5);
+		}
+	}
+}
