@@ -1,0 +1,62 @@
+.footer {
+	background-color: #222f33;
+	@include adaptiveValue("padding-block", 33, 15);
+
+	// .footer__container
+
+	&__container {
+		display: grid;
+		align-items: center;
+		justify-content: center;
+		gap: toRem(20);
+		@media (min-width: toEm(690)) {
+			grid-template-columns: auto 1fr auto;
+		}
+	}
+
+	// .footer__mail
+
+	&__mail {
+		justify-self: center;
+		color: $colorLight;
+		font-family: Rubik;
+		font-size: 12px;
+		font-weight: 500;
+		opacity: 0.6;
+		transition: opacity 0.3s;
+		@media (any-hover: hover) {
+			&:hover {
+				opacity: 1;
+			}
+		}
+	}
+
+	// .footer__logo
+
+	&__logo {
+		justify-self: center;
+	}
+
+	// .footer__list
+
+	&__menu {
+		display: flex;
+		gap: toRem(30);
+		align-items: center;
+	}
+
+	// .footer__item
+
+	&__item {
+		color: $colorLight;
+		font-size: 12px;
+		font-weight: 500;
+		opacity: 0.6;
+		transition: opacity 0.3s;
+		@media (any-hover: hover) {
+			&:hover {
+				opacity: 1;
+			}
+		}
+	}
+}

@@ -1,0 +1,77 @@
+// @include img(100%, 100%, contain);
+//  @include adaptiveValue("column-gap", , );
+
+$colorLight: #fff;
+$colorBtn: #606b74;
+$colorDark: #222f33;
+$colorMain: #646d70;
+
+body {
+	font-family: "Rubik", sans-serif;
+	.open-menu & {
+		overflow: hidden;
+	}
+}
+.wrapper {
+	min-height: 100%;
+	overflow: clip;
+	display: flex;
+	flex-direction: column;
+	> main {
+		flex-grow: 1;
+	}
+}
+
+[class*="__container"] {
+	max-width: toRem(838);
+	margin-inline: auto;
+	padding-inline: toRem(15);
+}
+
+// Btn
+.btn {
+	border-radius: toRem(4);
+	background: $colorLight;
+	padding: toRem(10) toRem(21.5);
+	color: $colorBtn;
+	text-align: center;
+	font-size: 12px;
+	font-weight: 500;
+	position: relative;
+	z-index: 5;
+	transition: all 0.3s;
+	overflow: hidden;
+	&::before {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: -35%;
+		width: 30%;
+		height: 200%;
+		background: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(8, 8, 8, 0.388));
+		// background-color: $colorDark;
+		transform: skew(-30deg) translate(-100%, -25%);
+		will-change: left;
+	}
+	@media (any-hover: hover) {
+		&:hover::before {
+			// background-color: $colorBtn;
+			// color: $colorLight;
+			left: 150%;
+			transition: left 1s;
+		}
+	}
+	&--content{
+		padding-inline: toRem(15);
+		border: 1px solid  $colorBtn;
+	}
+}
+.title {
+	color: $colorLight;
+	@include adaptiveValue("font-size", 30, 24);
+	font-weight: 900;
+	line-height: 1.2;
+	&--dark {
+		color: #222f33;
+	}
+}
