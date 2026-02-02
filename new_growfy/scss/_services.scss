@@ -1,0 +1,106 @@
+@use "./mixins" as m;
+.services {
+	@include m.adaptiveValue("padding-top", 80, 25);
+	@include m.adaptiveValue("padding-bottom", 96, 35);
+	// .services__container
+	&__container {
+		display: flex;
+		gap: m.toRem(32);
+		opacity: 0;
+		//-------------------------------
+		transform: translateY(10%);
+		transition:
+			opacity 0.8s ease,
+			transform 0.8s ease;
+		//-------------------------------------
+		&.--animate {
+			opacity: 1;
+			transform: translateY(0);
+		}
+		@media (max-width: m.toEm(1150)) {
+			flex-direction: column;
+			transform: translateY(10px);
+				transition:
+			opacity 0.3s ease,
+			transform 0.3s ease;
+			
+		}
+	}
+	// .services__content
+	&__content {
+		flex: 0 1 47%;
+		align-self: center;
+	}
+	// .services__block-info
+	&__block-info {
+		max-width: m.toRem(512);
+		width: 100%;
+		@media (max-width: m.toEm(1150)) {
+			max-width: 100%;
+		}
+	}
+	// .services__cards
+	&__cards {
+	}
+}
+
+.cards {
+	flex: 0 1 53%;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: m.toRem(32);
+	@media (max-width: m.toEm(620)) {
+		grid-template-columns: 1fr;
+	}
+
+	// .cards__item
+	&__column {
+		display: flex;
+		flex-direction: column;
+		gap: m.toRem(32);
+		&:first-child {
+			padding-top: m.toRem(48);
+			@media (max-width: m.toEm(620)) {
+				padding: 0;
+			}
+		}
+	}
+	&__item {
+		background: var(--bg-color-light-2);
+		border-radius: m.toRem(30);
+		@include m.adaptiveValue("padding-block", 55, 25);
+		@include m.adaptiveValue("padding-inline", 25, 10);
+	}
+	// .cards__img
+	&__img {
+		max-width: m.toRem(76);
+		width: 100%;
+		aspect-ratio: 1;
+		&:not(:last-child) {
+			margin-bottom: m.toRem(15);
+		}
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
+	}
+	// .cards__title
+	&__title {
+		font-weight: 400;
+		font-size: m.toRem(19);
+		line-height: 1.4;
+		color: var(--white-color);
+		&:not(:last-child) {
+			margin-bottom: m.toRem(10);
+		}
+	}
+	// .cards__text
+	&__text {
+		font-weight: 300;
+		line-height: 1.5;
+		p:not(:last-child) {
+			margin-bottom: m.toRem(5);
+		}
+	}
+}
