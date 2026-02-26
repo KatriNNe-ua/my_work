@@ -1,0 +1,89 @@
+@import url("reset.css");
+
+:root {
+  --move-x: 0deg;
+  --move-y: 0deg;
+  --index: calc(1vw + 1vh);
+}
+
+@font-face {
+  font-family: "kamerik205-3d";
+  src: url(../fonts/kamerik205-heavy.woff2);
+  font-weight: 900;
+}
+
+@font-face {
+  font-family: "merriweather-3d";
+  src: url(../fonts/merriweather-regular-italic.woff2);
+  font-weight: 900;
+}
+/* ============================================== */
+body {
+  background-color: #000;
+  color: #fff;
+  font-family: kamerik205-3d;
+  overflow: hidden;
+}
+
+.logo {
+  width: calc(var(--index) * 6.5);
+  aspect-ratio: 1;
+  background-repeat: no-repeat;
+  position: absolute;
+  z-index: 1;
+  left: 50%;
+  top: calc(var(--index) * 2);
+  transform: translateX(-50%);
+}
+.layers {
+  perspective: 1000px;
+}
+.layers__container {
+  height: 100svh;
+  transform-style: preserve-3d;
+  transform: rotateX(var(--move-y)) rotateY(var(--move-x));
+  will-change: transform;
+  transition: transform 2s cubic-bezier(0.05, 0.5, 0, 1);
+}
+.layers__item {
+  position: absolute;
+  top: -5vw;
+  left: -5vw;
+  right: -5vw;
+  bottom: -5vw;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.layer-1 {
+  transform: translateZ(-55px) scale(1.06);
+}
+.layer-2 {
+  transform: translateZ(80px) scale(0.9);
+}
+.layer-3 {
+  transform: translateZ(180px) scale(0.88);
+}
+.layer-4 {
+  transform: translateZ(180px) scale(0.9);
+}
+.layer-5 {
+  transform: translateZ(300px) scale(0.9);
+  pointer-events: none;
+}
+.layer-6 {
+  transform: translateZ(380px);
+  pointer-events: none;
+}
+.hero-content {
+  font-size: calc(var(--index) * 3.3);
+  text-align: center;
+  line-height: 1.2;
+  letter-spacing: calc(var(--index) * -0.15);
+  margin-top: calc(var(--index) * 5.5);
+}
+.hero-content span {
+  display: block;
+}
