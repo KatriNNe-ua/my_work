@@ -1,0 +1,94 @@
+@use "./mixins" as *;
+.footer {
+	@include adaptiveValue("padding-block", 120, 60);
+	// .footer__container
+	&__container {
+	}
+	// .footer__title
+	&__title {
+		@include adaptiveValue("font-size", 60, 35);
+		line-height: 1.17;
+		text-align: center;
+		color: var(--accent-color);
+		&:not(:last-child) {
+			margin-bottom: toRem(20);
+		}
+	}
+	// .footer__text
+	&__text {
+		font-size: toRem(12);
+		line-height: 2.33;
+		text-align: center;
+		color: var(--light-color);
+		&:not(:last-child) {
+			@include adaptiveValue("margin-bottom", 82, 40);
+		}
+	}
+	// .footer__block
+	&__block {
+		border: toRem(1) solid var(--border-color);
+		max-width: toRem(420);
+		width: 100%;
+		aspect-ratio: 420/108;
+		display: flex;
+		align-items: end;
+		margin: 0 auto;
+		span {
+			display: block;
+			height: 50%;
+			width: 100%;
+			background-color: var(--accent-color);
+		}
+		&:not(:last-child) {
+			margin-bottom: toRem(32);
+		}
+	}
+	// .footer__private
+	&__private {
+		font-size: toRem(14);
+		line-height: 1.43;
+		text-align: center;
+		color: var(--light-color);
+		&:not(:last-child) {
+			margin-bottom: toRem(20);
+		}
+	}
+	// .footer__link
+	&__link {
+		color: var(--accent-color);
+		transition: all 0.3s;
+		@media (any-hover: hover) {
+			&:hover {
+				text-decoration: underline;
+			}
+		}
+	}
+	// .footer__social
+	&__social {
+	}
+}
+.social {
+	display: flex;
+	gap: toRem(8);
+	justify-content: center;
+	// .social__item
+	&__item {
+		width: toRem(48);
+		aspect-ratio: 1;
+		padding: toRem(14);
+		border: toRem(1) solid var(--border-color);
+		transition: border 0.3s;
+		@media (any-hover: hover) {
+			&:hover {
+				border: toRem(1) solid var(--accent-color);
+			}
+		}
+	}
+	// .social__link
+	&__link {
+		img {
+			width: toRem(20);
+			aspect-ratio: 1;
+		}
+	}
+}

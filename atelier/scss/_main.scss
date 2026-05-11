@@ -1,0 +1,43 @@
+@use "./mixins" as *;
+
+@import url("https://fonts.googleapis.com/css?family=Old+Standard+TT:regular&display=swap");
+
+/* Основні стилі */
+body {
+	background-color: var(--bg);
+	font-family: "Old Standard TT", sans-serif;
+	color: var(--wight-color);
+	
+	opacity: 0;
+	transition: opacity 1.5s;
+	.loaded & {
+		opacity: 1;
+	}
+	.lock & {
+		overflow: hidden;
+		touch-action: none;
+		overscroll-behavior: none;
+	}
+}
+
+.wrapper {
+	min-height: 100%;
+	overflow: clip; /* clip */
+
+	display: flex;
+	flex-direction: column;
+
+	// @include m.adaptiveValue("padding-top", 116, 70);
+}
+.wrapper > main {
+	flex-grow: 1;
+}
+
+/* --------------------- */
+[class*="__container"] {
+	padding-inline: toRem(15);
+	max-width: toRem($containerWidth);
+	margin: 0 auto;
+}
+/* --------------------- */
+
