@@ -1,0 +1,133 @@
+@use "sass:math";
+@use "./mixins" as *;
+
+.footer {
+	background-color: var(--color-1);
+	// .footer__container
+	&__container {
+		@include adaptiveValue("padding-block", 48, 24);
+		display: flex;
+		flex-direction: column;
+		@include adaptiveValue("gap", 97, 40);
+	}
+	// .footer__up
+	&__up {
+		display: flex;
+		justify-content: space-between;
+		gap: toRem(30);
+		@media (max-width: toEm(740)) {
+			flex-direction: column;
+			align-items: center;
+		}
+	}
+	// .footer__left
+	&__left {
+		display: flex;
+		flex-direction: column;
+		gap: toRem(24);
+		@media (max-width: toEm(740)) {
+			align-items: center;
+		}
+	}
+	// .footer__logo
+	&__logo {
+		max-width: toRem(107);
+		width: 100%;
+		aspect-ratio: 107/29;
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: contain;
+		}
+	}
+	// .footer__text
+	&__text {
+		max-width: toRem(170);
+		width: 100%;
+		line-height: 1.4;
+		font-weight: 500;
+		font-size: toRem(18);
+		color: var(--color-4);
+		@media (max-width: toEm(740)) {
+			text-align: center;
+		}
+	}
+	// .footer__social
+	&__social {
+	}
+	// .footer__right
+	&__right {
+		display: flex;
+		gap: toRem(48);
+		flex-wrap: wrap;
+		justify-content: space-evenly;
+	}
+	// .footer__list
+	&__list {
+		display: flex;
+		flex-direction: column;
+		gap: toRem(24);
+		font-weight: 400;
+		font-size: toRem(18);
+		color: var(--color-4);
+	}
+	// .footer__item
+	&__item {
+	}
+	// .footer__link
+	&__link {
+		transition: all 0.3s;
+		&--active {
+			font-weight: 700;
+			color: var(--color-2);
+		}
+		@media (any-hover: hover) {
+			&:hover {
+				text-decoration: underline;
+			}
+		}
+	}
+
+	// .footer__reserved
+	&__reserved {
+		font-weight: 500;
+		font-size: toRem(18);
+		color: var(--color-4);
+		@media (max-width: toEm(740)) {
+			text-align: center;
+		}
+	}
+}
+.social {
+	display: flex;
+	gap: toRem(24);
+	// .social__item
+	&__item {
+		max-height: toRem(48);
+		aspect-ratio: 1;
+		width: 100%;
+		border-radius: 50%;
+		border: toRem(1) solid var(--color-4);
+		padding: toRem(14);
+		transition: all 0.3s;
+		@media (any-hover: hover) {
+			&:hover {
+				background-color: var(--white-color);
+			}
+		}
+	}
+	// .social__link
+	&__link {
+		width: 100%;
+		height: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		img {
+			max-width: toRem(18);
+			aspect-ratio: 1;
+			width: 100%;
+			object-fit: contain;
+		}
+	}
+}

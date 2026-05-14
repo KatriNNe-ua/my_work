@@ -1,0 +1,94 @@
+@use "sass:math";
+@use "./mixins" as *;
+
+@import url("https://fonts.googleapis.com/css?family=Poppins:regular,500,700,800&display=swap");
+
+/* Основні стилі */
+body {
+	background-color: var(--white-color);
+	font-family: "Poppins", sans-serif;
+	color: var(--color-4);
+
+	opacity: 0;
+	transition: opacity 1.5s;
+	.loaded & {
+		opacity: 1;
+	}
+	.lock & {
+		overflow: hidden;
+		touch-action: none;
+		overscroll-behavior: none;
+	}
+}
+
+.wrapper {
+	min-height: 100%;
+	overflow: clip; /* clip */
+
+	display: flex;
+	flex-direction: column;
+
+}
+.wrapper > main {
+	flex-grow: 1;
+}
+
+/* --------------------- */
+[class*="__container"] {
+	padding-inline: toRem(15);
+	max-width: toRem(1278);
+	margin: 0 auto;
+}
+/* --------------------- */
+
+.header-block {
+	// .header-block__title
+	&__title {
+		font-weight: 700;
+		@include adaptiveValue("font-size", 32, 25);
+		font-size: toRem(32);
+		color: var(--color-2);
+		&:not(:last-child) {
+			margin-bottom: toRem(12);
+		}
+	}
+	// .header-block__text
+	&__text {
+		font-weight: 500;
+		font-size: toRem(18);
+		color: var(--color-4);
+		@media (max-width: toEm(900)) {
+		font-size: toRem(14);
+		}
+	}
+}
+.btn {
+	 animation: right 3.5s linear  infinite;
+	border-radius: toRem(8);
+	padding: toRem(12) toRem(24);
+	font-weight: 500;
+	font-size: toRem(18);
+	color: var(--color-2);
+	display: flex;
+	align-items: center;
+	gap: toRem(10);
+	width: fit-content;
+	border: toRem(1) solid transparent;
+	transition: border 0.3s;
+	&::after {
+		content: "";
+		width: toRem(24);
+		height: toRem(20);
+		background: url("../img/icon/arrow-right.svg") center center/cover no-repeat;
+	}
+	@media (any-hover: hover) {
+		&:hover {
+			border: toRem(1) solid var(--black-color);
+		}
+	}
+	@media (max-width: toEm(450)) {
+			width: 100%;
+			justify-content: center;
+			animation:none
+		}
+}
