@@ -1,0 +1,127 @@
+@use "./mixins" as *;
+
+.footer {
+	@include adaptiveValue("padding-top", 65, 40);
+	padding-bottom: toRem(20);
+	background-color: var(--dark-color);
+	color: var(--wight-color);
+	// .footer__container
+	&__container {
+		display: flex;
+		flex-direction: column;
+		gap: toRem(50);
+	}
+	// .footer__up
+	&__up {
+		display: flex;
+		gap: toRem(20);
+		justify-content: space-between;
+		align-items: center;
+		@media (max-width: toEm(550)) {
+			flex-direction: column;
+			align-items: flex-start;
+		}
+	}
+	// .footer__logo
+	&__logo {
+		font-weight: 700;
+		font-size: toRem(24);
+	}
+	// .footer__social
+	&__social {
+	}
+	// .footer__body
+	&__body {
+		@include adaptiveValue("padding-top", 65, 40);
+		border-top: toRem(1) solid var(--wight-color);
+		display: flex;
+		flex-wrap: wrap;
+		gap: toRem(68);
+		justify-content: space-between;
+		@media (max-width: toEm(767.98)) {
+			border-top: none;
+			padding-top: 0;
+			justify-content: space-around;
+		}
+		@media (max-width: toEm(350)) {
+			flex-direction: column;
+			align-items: center;
+		}
+	}
+	// .footer__block
+	&__block {
+	}
+	// .footer__header
+	&__header {
+		font-weight: 500;
+		font-size: toRem(18);
+		&:not(:last-child) {
+			margin-bottom: toRem(25);
+		}
+	}
+	// .footer__list
+	&__list {
+		font-weight: 400;
+		font-size: toRem(14);
+		line-height: 1.43;
+	}
+	// .footer__item
+	&__item {
+		&:not(:last-child) {
+			margin-bottom: toRem(20);
+		}
+	}
+	// .footer__link
+	&__link {
+		@media (any-hover: hover) {
+			&:hover {
+				text-decoration: underline;
+			}
+		}
+	}
+	// .footer__bottom
+	&__bottom {
+		padding-top: toRem(20);
+		font-weight: 400;
+		font-size: toRem(14);
+		line-height: 1.43;
+		text-align: center;
+		@media (max-width: toEm(767.98)) {
+			font-size: toRem(12);
+		}
+	}
+}
+.social {
+	display: flex;
+	gap: toRem(16);
+		@media (max-width: toEm(550)) {
+			width: 100%;
+			justify-content: space-between;
+			gap: toRem(10);
+		}
+	// .social__item
+	&__item {
+	}
+	// .social__link
+	&__link {
+		width: toRem(48);
+		aspect-ratio: 1;
+		border-radius: 50%;
+		background-color: var(--dark-color-2);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border: toRem(1) solid transparent;
+		transition: all 0.3s;
+		img {
+			max-width: toRem(14);
+			aspect-ratio: 14/16;
+			width: 100%;
+		}
+		@media (any-hover: hover) {
+			&:hover {
+				border: toRem(1) solid var(--wight-color);
+			}
+		}
+	}
+}

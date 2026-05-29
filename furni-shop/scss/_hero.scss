@@ -1,0 +1,189 @@
+@use "./mixins" as *;
+
+.hero {
+	min-height: 100svh;
+	position: relative;
+	@media (max-width: toEm(680)) {
+	margin-bottom: toRem(130);
+
+		}
+	&__bg {
+		inset: 0;
+		position: absolute;
+		width: 100%;
+		min-height: 100%;
+		z-index: -1;
+		@media (max-width: toEm(680)) {
+			min-height: toRem(705);
+
+		}
+
+		&::after {
+			content: "";
+			background: linear-gradient(
+				180deg,
+				rgba(255, 255, 255, 0) 0%,
+				rgba(255, 255, 255, 0.6) 25.71%,
+				#fff 38.55%
+			);
+			width: 100%;
+			height: 15.902778%;
+			position: absolute;
+			left: 0;
+			bottom: 0;
+			
+		}
+		img {
+			position: absolute;
+			height: 93.75%; /* 1350/1440 */
+			width: 100%;
+			object-fit: cover;
+			inset: 0;
+			object-position: bottom right;
+			
+		}
+	}
+
+	// .hero__container
+	&__container {
+		color: var(--wight-color);
+		padding-top: toRem(100);
+		padding-bottom: toRem(30);
+		display: flex;
+		flex-direction: column;
+		gap: toRem(100);
+		min-height: 100svh;
+		position: relative;
+	}
+	// .hero__content
+	&__content {
+		display: flex;
+		flex-direction: column;
+		gap: toRem(30);
+		align-items: center;
+		justify-content: center;
+		max-width: toRem(888);
+		margin: 0 auto;
+		flex-grow: 1;
+	}
+	// .hero__title
+	&__title {
+		font-weight: 600;
+		line-height: 1.2;
+		text-transform: capitalize;
+		text-align: center;
+		@include adaptiveValue("font-size", 64, 24);
+		@include adaptiveValue("max-width", 888, 290);
+	}
+	// .hero__info
+	&__info {
+		font-weight: 400;
+		font-size: toRem(20);
+		line-height: 1.5;
+		letter-spacing: 0.01em;
+		text-align: center;
+		@include adaptiveValue("padding-bottom", 35, 0);
+		@include adaptiveValue("max-width", 627, 293);
+		@media (max-width: toEm(767.98)) {
+			font-size: toRem(14);
+		}
+	}
+	// .hero__btn
+	&__btn {
+		width: fit-content;
+		border-radius: toRem(10);
+		backdrop-filter: blur(toRem(30));
+		background: rgba(226, 226, 226, 0.4);
+		font-weight: 600;
+		font-size: toRem(20);
+		line-height: 1.5;
+		letter-spacing: 0.01em;
+		text-align: center;
+		border: toRem(1) solid transparent;
+		transition: border 0.3s;
+
+		@include adaptiveValue("padding-block", 16, 9);
+		@include adaptiveValue("padding-inline", 80, 35);
+
+		@media (max-width: toEm(767.98)) {
+			border-radius: toRem(5);
+			font-size: toRem(14);
+		}
+
+		@media (any-hover: hover) {
+			&:hover {
+				border: toRem(1) solid var(--wight-color);
+			}
+		}
+	}
+	// .hero__list
+	&__list {
+		border-radius: toRem(20);
+		padding: toRem(38);
+		@include adaptiveValue("padding-inline", 100, 30);
+		background-color: var(--accent-color);
+		display: flex;
+		justify-content: center;
+		@include adaptiveValue("gap", 95, 45);
+		@media (max-width: toEm(1200)) {
+			padding-inline: toRem(40);
+		}
+		@media (max-width: toEm(1030)) {
+			gap: toRem(45);
+		}
+		@media (max-width: toEm(815)) {
+			gap: toRem(25);
+		}
+		@media (max-width: toEm(680)) {
+			display: grid;
+			grid-template-columns: auto auto;
+			column-gap: toRem(27);
+			row-gap: toRem(62);
+			padding-inline: toRem(15);
+			margin-bottom: toRem(-130);
+			
+	
+		}
+	}
+	// .hero__item
+	&__item {
+		display: grid;
+		gap: toRem(5);
+		justify-content: center;
+		align-items: center;
+		font-weight: 400;
+		line-height: 1.3;
+		letter-spacing: 0.01em;
+		text-align: center;
+
+		@include adaptiveValue("font-size", 19, 14);
+		&:not(:last-child) {
+			@include adaptiveValue("padding-right", 95, 45);
+			border-right: toRem(1) solid var(--wight-color);
+			@media (max-width: toEm(1030)) {
+				padding-right: toRem(45);
+			}
+			@media (max-width: toEm(815)) {
+				padding-right: toRem(25);
+			}
+			@media (max-width: toEm(680)) {
+				padding-right: 0;
+				border-right: none;
+			}
+		}
+		&:nth-child(odd) {
+			@media (max-width: toEm(680)) {
+				padding-right: toRem(27);
+				border-right: toRem(1) solid var(--wight-color);
+			}
+		}
+		span {
+			min-width: toRem(105);
+			font-weight: 600;
+			line-height: 1.2;
+			text-transform: capitalize;
+			text-align: center;
+			@include adaptiveValue("font-size", 40, 24);
+		}
+	}
+}
