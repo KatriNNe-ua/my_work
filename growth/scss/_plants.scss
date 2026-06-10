@@ -1,0 +1,291 @@
+@use "./mixins" as *;
+
+.plants {
+	&__container {
+		@include adaptiveValue("padding-top", 70, 40);
+		@include adaptiveValue("padding-bottom", 75, 35);
+		display: flex;
+		flex-direction: column;
+		@include adaptiveValue("gap", 80, 40);
+	}
+	&__up {
+		display: flex;
+		@include adaptiveValue("gap", 54, 24);
+		@media (max-width: toEm(991.98)) {
+			flex-wrap: wrap;
+		}
+		@media (max-width: toEm(400)) {
+			justify-content: center;
+		}
+	}
+	&__header {
+		flex: 0 0 toRem(292);
+		display: flex;
+		flex-direction: column;
+		gap: toRem(15);
+	}
+	&__title {
+		font-weight: 800;
+		@include adaptiveValue("font-size", 44, 28);
+		line-height: 0.69;
+		letter-spacing: -0.01em;
+		flex-grow: 1;
+	}
+	&__text {
+		font-weight: 400;
+		font-size: toRem(13);
+		letter-spacing: -0.01em;
+	}
+	&__img-link {
+		flex: 0 0 toRem(244);
+		width: 100%;
+		aspect-ratio: 244/142;
+		border-radius: toRem(20);
+		overflow: hidden;
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			object-position: right;
+			mix-blend-mode: luminosity;
+			transition: all 0.3s;
+		}
+		@media (any-hover: hover) {
+			&:hover img {
+				mix-blend-mode: normal;
+			}
+		}
+	}
+	&__info {
+		font-weight: 600;
+		@include adaptiveValue("font-size", 36, 24);
+		letter-spacing: -0.01em;
+		position: relative;
+	}
+	&__img-text {
+		display: inline-block;
+		border: toRem(1) solid var(--wight-color);
+		border-radius: toRem(60);
+		max-width: toRem(178);
+		width: 100%;
+		position: relative;
+		z-index: 1;
+		@media (max-width: toEm(1218.98)) {
+			display: none;
+		}
+		img {
+			position: absolute;
+			left: 0;
+			top: toRem(-50);
+			width: 100%;
+			aspect-ratio: 178/64;
+			object-fit: contain;
+		}
+		&::before {
+			content: "";
+			position: absolute;
+			width: toRem(40);
+			height: toRem(40);
+			top: -50%;
+			left: 50%;
+			transform: translate(-50%, -100%);
+			background: url("../image/icon/logo.svg") center center/contain no-repeat;
+			z-index: 2;
+		}
+		&::after {
+			content: "";
+			position: absolute;
+			width: toRem(55);
+			aspect-ratio: 1;
+			top: 0;
+			left: 50%;
+			border-radius: 50%;
+			transform: translate(-50%, -85%);
+			background: var(--bg-light-color-01);
+			backdrop-filter: blur(toRem(7));
+			z-index: 1;
+		}
+	}
+	&__wrapper {
+		display: flex;
+		justify-content: space-between;
+		gap: toRem(20);
+		align-items: self-start;
+		@media (max-width: toEm(540)) {
+			gap: 0;
+		}
+		@media (max-width: toEm(517)) {
+			flex-direction: column-reverse;
+		}
+	}
+	&__list {
+		display: flex;
+		flex-wrap: wrap;
+	}
+	&__item {
+	}
+	&__btn {
+		border: toRem(1) solid var(--dark-color);
+		border-radius: toRem(60);
+		padding: 1.25rem 2.5rem;
+		-webkit-transition: all 0.3s;
+		transition: all 0.3s;
+		white-space: nowrap;
+		@include adaptiveValue("font-size", 25, 16);
+		letter-spacing: -0.01em;
+		@media (max-width: toEm(991.98)) {
+			padding: toRem(15) toRem(30);
+		}
+		@media (max-width: toEm(400)) {
+			padding: toRem(10) toRem(20);
+		}
+		&--active {
+			color: var(--wight-color);
+			background-color: var(--dark-color);
+		}
+		@media (any-hover: hover) {
+			&:hover {
+				color: var(--wight-color);
+				background-color: var(--dark-color);
+			}
+		}
+	}
+	&__kinds {
+	}
+}
+.kinds {
+	display: flex;
+	gap: toRem(14);
+	color: var(--wight-color);
+	@media (max-width: toEm(991.98)) {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(min(100%, toRem(300)), 1fr));
+	}
+	&__item {
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+		gap: toRem(20);
+		position: relative;
+		padding: toRem(20);
+		min-height: toRem(411);
+		mix-blend-mode: luminosity;
+		transition: all 0.3s;
+		&--active {
+			flex: 3;
+			mix-blend-mode: normal;
+		}
+		@media (max-width: toEm(991.98)) {
+			mix-blend-mode: normal;
+		}
+	}
+	&__bg {
+		position: absolute;
+		z-index: -1;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+		border-radius: toRem(20);
+		overflow: hidden;
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
+	}
+	&__block {
+		display: flex;
+		gap: toRem(10);
+		justify-content: space-between;
+		&:not(:last-child) {
+			margin-bottom: toRem(27);
+		}
+	}
+
+	&__title {
+		font-weight: 700;
+		@include adaptiveValue("font-size", 53, 28);
+		letter-spacing: -0.01em;
+	}
+	&__icon-link {
+		width: toRem(55);
+		aspect-ratio: 1;
+		background-color: var(--wight-color);
+		border-radius: 50%;
+		align-self: start;
+		align-items: center;
+		justify-content: center;
+		transition: all 0.3s;
+		visibility: hidden;
+		display: flex;
+		opacity: 0;
+		transition: all 0.3s;
+		.kinds__item--active & {
+			visibility: visible;
+			opacity: 1;
+		}
+		@media (max-width: toEm(991.98)) {
+			visibility: visible;
+			opacity: 1;
+			flex-shrink: 0;
+			width: toRem(45);
+		}
+		img {
+			width: toRem(25);
+			aspect-ratio: 1;
+			transform: rotate(-90deg);
+			filter: brightness(0) saturate(100%) invert(0%) sepia(97%) saturate(7475%) hue-rotate(265deg)
+				brightness(106%) contrast(89%);
+			border: toRem(1) solid transparent;
+		}
+		@media (any-hover: hover) {
+			&:hover {
+				background-color: var(--bg-light-color-03);
+				border: toRem(1) solid var(--wight-color);
+				img {
+					filter: none;
+				}
+			}
+		}
+	}
+	&__text {
+		flex-grow: 1;
+		font-weight: 400;
+		font-size: toRem(16);
+		letter-spacing: -0.01em;
+		max-width: toRem(573);
+		border-bottom: toRem(1) solid var(--bg-light-color-02);
+	}
+	&__logo {
+		width: fit-content;
+		position: relative;
+	}
+	&__img {
+		position: absolute;
+		border: toRem(1) solid var(--border-color);
+		backdrop-filter: blur(toRem(7));
+		background: var(--bg-light-color-02);
+		z-index: 2;
+		width: toRem(44);
+		aspect-ratio: 1;
+		border-radius: 50%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		img {
+			width: toRem(27);
+			aspect-ratio: 1;
+		}
+	}
+	&__name {
+		font-weight: 600;
+		font-size: toRem(11);
+		letter-spacing: 0.01em;
+		padding: toRem(15) toRem(19) toRem(15) toRem(50);
+		border-radius: toRem(29);
+		border: toRem(1) solid var(--border-color);
+		backdrop-filter: blur(toRem(7));
+		background: var(--bg-light-color-02);
+	}
+}

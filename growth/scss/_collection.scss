@@ -1,0 +1,132 @@
+@use "./mixins" as *;
+
+
+.collection {
+	@include adaptiveValue("padding-top", 75, 35);
+	@include adaptiveValue("padding-bottom", 90, 45);
+	&__container {
+	}
+	&__header-block {
+		text-align: center;
+		&:not(:last-child) {
+			@include adaptiveValue("margin-bottom", 40, 30);
+		}
+	}
+	&__list {
+		display: grid;
+		grid-template-columns: 525fr 240fr 525fr;
+		gap: toRem(20);
+		@media (max-width: toEm(850)) {
+			grid-template-columns: 1fr 1fr;
+			gap: toRem(15);
+		}
+		@media (max-width: toEm(620)) {
+			grid-template-columns: 1fr;
+		}
+	}
+	&__item {
+		cursor: pointer;
+		display: flex;
+		align-items: flex-end;
+		position: relative;
+		max-width: toRem(525);
+		width: 100%;
+		aspect-ratio: 525/371;
+		overflow: hidden;
+		border-radius: toRem(20);
+		padding: toRem(80) toRem(10) toRem(10);
+		color: var(--wight-color);
+		@media (max-width: toEm(620)) {
+			max-width: 100%;
+		}
+		&:nth-child(3n + 1) {
+			grid-column: span 2;
+			max-width: toRem(785);
+			width: 100%;
+			aspect-ratio: 785/371;
+			@media (max-width: toEm(850)) {
+				grid-column: auto;
+				max-width: toRem(525);
+				aspect-ratio: 525/371;
+			}
+			@media (max-width: toEm(620)) {
+				max-width: 100%;
+			}
+		}
+
+		&:hover {
+			.collection__content {
+				backdrop-filter: blur(toRem(25));
+				border-radius: toRem(24);
+				padding: toRem(20) toRem(24);
+			}
+			.collection__info {
+				opacity: 1;
+				visibility: visible;
+				display: block;
+			}
+		}
+	}
+	&__bg {
+		position: absolute;
+		inset: 0;
+		z-index: -1;
+		width: 100%;
+		height: 100%;
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
+	}
+	&__link {
+		position: absolute;
+		top: toRem(10);
+		right: toRem(10);
+		width: toRem(64);
+		aspect-ratio: 1;
+		border-radius: 50%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		transition: all 0.3s;
+		border: toRem(1) solid var(--wight-color);
+		padding: toRem(15);
+
+		img {
+			width: toRem(34);
+			aspect-ratio: 1;
+			transform: rotate(-90deg);
+			border: toRem(1) solid transparent;
+		}
+		@media (any-hover: hover) {
+			&:hover {
+				background-color: var(--wight-color);
+				img {
+					filter: brightness(0) saturate(100%) invert(0%) sepia(97%) saturate(7475%) hue-rotate(265deg)
+						brightness(106%) contrast(89%);
+				}
+			}
+		}
+	}
+	&__content {
+		transition: all 0.3s;
+	}
+	&__title {
+		font-weight: 700;
+		@include adaptiveValue("font-size", 70, 30);
+		letter-spacing: -0.01em;
+		&:not(:last-child) {
+			@include adaptiveValue("margin-bottom", 35, 20);
+		}
+	}
+	&__info {
+		opacity: 0;
+		visibility: hidden;
+		font-weight: 400;
+		font-size: toRem(16);
+		letter-spacing: -0.01em;
+		transition: all 0.3s;
+		display: none;
+	}
+}

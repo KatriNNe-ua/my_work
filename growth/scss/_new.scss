@@ -1,0 +1,178 @@
+@use "./mixins" as *;
+
+
+.new {
+	@include adaptiveValue("padding-top", 75, 35);
+	@include adaptiveValue("padding-bottom", 62, 31);
+	&__container {
+		position: relative;
+			@include adaptiveValue("padding-bottom", 72, 50);
+	}
+	&__header-block {
+		display: flex;
+		@include adaptiveValue("gap", 114, 30);
+		align-items: center;
+		& .header-block__title {
+			white-space: nowrap;
+		}
+		&:not(:last-child) {
+			@include adaptiveValue("margin-bottom", 40, 20);
+		}
+		@media (max-width: toEm(991.98)) {
+			flex-direction: column;
+			gap: toRem(20);
+			text-align: center;
+		}
+	}
+	&__slider {
+
+	}
+	&__wrapper {
+	
+	}
+	&__slide {
+	}
+	&__pagination {
+
+	}
+}
+
+.slide {
+	padding: toRem(10) toRem(10) toRem(24);
+	border-radius: toRem(24);
+	box-shadow: 0 0 toRem(55) 0 rgba(0, 0, 0, 0.1);
+	position: relative;
+	&__icon {
+		position: absolute;
+		top: toRem(23);
+		left: toRem(23);
+		max-width: toRem(64);
+		width: 100%;
+		aspect-ratio: 1;
+		border: toRem(1) solid var(--border-color);
+		border-radius: 50%;
+		padding: toRem(18);
+		backdrop-filter: blur(toRem15());
+		background: var(--bg-light-color-03);
+		transition: all 0.3s;
+			@media (max-width: toEm(500)) {
+			max-width: toRem(40);
+			padding: toRem(10);
+		}
+		img {
+			width: toRem(23);
+			aspect-ratio: 23/21;
+			width: 100%;
+			object-fit: contain;
+			transition: all 0.3s;
+		}
+		@media (any-hover: hover) {
+			&:hover {
+				background: var(--wight-color);
+				img {
+					filter: brightness(0) saturate(100%) invert(0%) sepia(0%) saturate(7500%) hue-rotate(338deg)
+						brightness(100%) contrast(104%);
+				}
+			}
+		}
+	}
+	&__img {
+		border-radius: toRem(14);
+		max-width: toRem(414);
+		aspect-ratio: 414/316;
+		overflow: hidden;
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
+		&:not(:last-child) {
+			margin-bottom: toRem(13);
+		}
+	}
+	&__info {
+		display: flex;
+		justify-content: space-between;
+		align-items: flex-end;
+	}
+	&__block {
+	}
+	&__title {
+		@include adaptiveValue("font-size", 32, 22);
+		letter-spacing: -0.03em;
+		line-height: 1.4;
+	}
+	&__descr {
+		font-weight: 400;
+		@include adaptiveValue("font-size", 18, 14);
+		letter-spacing: -0.03em;
+		opacity: 0.4;
+		&:not(:last-child) {
+			margin-bottom: toRem(14);
+		}
+	}
+	&__price {
+		font-weight: 700;
+		font-size: toRem(18);
+		letter-spacing: -0.03em;
+	}
+	&__btn {
+		align-self: flex-end;
+		flex-shrink: 0;
+		border-radius: 50%;
+		padding: toRem(20);
+		width: toRem(61);
+		aspect-ratio: 1;
+		background-color: var(--dark-color);
+		border: toRem(1) solid transparent;
+		transition: all 0.3s;
+				@media (max-width: toEm(500)) {
+			max-width: toRem(40);
+			padding: toRem(10);
+		}
+		img {
+			width: toRem(20);
+			aspect-ratio: 1;
+			object-fit: contain;
+			transform: rotate(-90deg);
+			transition: all 0.3s;
+		}
+		@media (any-hover: hover) {
+			&:hover {
+				background: var(--wight-color);
+				border: toRem(1) solid var(--dark-color);
+				img {
+					filter: brightness(0) saturate(100%) invert(0%) sepia(0%) saturate(7500%) hue-rotate(338deg)
+						brightness(100%) contrast(104%);
+				}
+			}
+		}
+	}
+}
+
+.new__pagination {	
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-wrap: wrap;
+	gap: toRem(12);
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+
+	& .swiper-pagination-bullet {
+		flex: 0 0 toRem(15);
+		height: toRem(15);
+		background-color: var(--border-color);
+		border-radius: 50%;
+		cursor: pointer;
+		transition: all 0.3s;
+	}
+	& .swiper-pagination-bullet.swiper-pagination-bullet-active {
+		border-radius: toRem(21);
+	flex: 0 0 toRem(60);
+		width: 100%;
+		background-color: var(--dark-color);
+	}
+}

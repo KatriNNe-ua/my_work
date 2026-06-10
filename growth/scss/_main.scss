@@ -1,0 +1,71 @@
+@use "./mixins" as *;
+
+/* Основні стилі */
+body {
+	background-color: var(--wight-color);
+	font-family: "Lufga", sans-serif;
+	font-weight: 500;
+	color: var(--dark-color);
+	opacity: 0;
+	transition: opacity 1.5s;
+	.loaded & {
+		opacity: 1;
+	}
+	.lock & {
+		overflow: hidden;
+		touch-action: none;
+		overscroll-behavior: none;
+	}
+}
+
+.wrapper {
+	min-height: 100%;
+	overflow: clip; /* clip */
+
+	display: flex;
+	flex-direction: column;
+
+	// @include m.adaptiveValue("padding-top", 116, 70);
+}
+.wrapper > main {
+	flex-grow: 1;
+}
+
+/* --------------------- */
+[class*="__container"] {
+	padding-inline: toRem(45);
+	max-width: toRem(1420);
+	width: 100%;
+	margin: 0 auto;
+	@media (max-width: toEm(991.98)) {
+		padding-inline: toRem(15);
+	}
+}
+/* --------------------- */
+
+
+.header-block {
+	&__title {
+		font-weight: 800;
+		@include adaptiveValue("font-size", 125, 45);
+		letter-spacing: -0.05em;
+		line-height: 1.18;
+	}
+	&__text {
+		font-weight: 600;
+		font-size: toRem(18);
+		letter-spacing: 0.01em;
+	}
+}
+//==============================
+// [class*="--anim"] {
+// 	opacity: 0;
+// 	transform: translateY(toRem(80));
+// 	transition:
+// 		opacity 0.6s ease,
+// 		transform 0.6s ease;
+// 	&.--animate {
+// 		opacity: 1;
+// 		transform: translateY(0);
+// 	}
+// }
