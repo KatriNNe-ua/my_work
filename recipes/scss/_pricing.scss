@@ -1,0 +1,187 @@
+@use "./mixins" as *;
+
+.pricing {
+	@include adaptiveValue("padding-top", 100, 50);
+	@include adaptiveValue("padding-bottom", 140, 70);
+
+	&__container {
+	}
+	&__block-header {
+		&:not(:last-child) {
+			@include adaptiveValue("margin-bottom", 100, 50);
+		}
+	}
+	&__list {
+		padding-inline: toRem(130);
+		display: grid;
+		grid-template-columns: 1fr 1fr 1fr;
+		justify-content: center;
+		align-items: center;
+		position: relative;
+		z-index: 2;
+		@media (max-width: toEm(1400)) {
+			padding-inline: toRem(80);
+		}
+		@media (max-width: toEm(1200)) {
+			padding-inline: toRem(0);
+		}
+		@media (max-width: toEm(910)) {
+			grid-template-columns: 1fr;
+			gap: toRem(30);
+		}
+		&::before {
+			content: "";
+			position: absolute;
+			left: 0;
+			top: 50%;
+			transform: translateY(-50%);
+			max-width: toRem(130);
+			width: 100%;
+			aspect-ratio: 130/781;
+			border-radius: toRem(43) 0 0 toRem(43);
+			background: url("../images/pricing/left.webp") center center/cover no-repeat;
+			z-index: -1;
+			@media (max-width: toEm(1200)) {
+				display: none;
+			}
+		}
+		&::after {
+			content: "";
+			position: absolute;
+			right: 0;
+			top: 50%;
+			transform: translateY(-50%);
+			max-width: toRem(130);
+			width: 100%;
+			aspect-ratio: 130/781;
+			border-radius: 0 toRem(43) toRem(43) 0;
+			background: url("../images/pricing/right.webp") center center/cover no-repeat;
+			z-index: -1;
+			@media (max-width: toEm(1200)) {
+				display: none;
+			}
+		}
+	}
+	&__card {
+	}
+	&__link {
+		min-height: toRem(881);
+		border: toRem(2) solid var(--green);
+		border-radius: toRem(43);
+		padding-block: toRem(70);
+		@include adaptiveValue("padding-inline", 50, 15);
+		@include adaptiveValue("font-size", 22, 16);
+		display: flex;
+		flex-direction: column;
+		gap: toRem(20);
+		@media (max-width: toEm(1200)) {
+			min-height: toRem(800);
+		}
+		@media (max-width: toEm(910)) {
+			min-height: auto;
+			padding-block: toRem(30);
+			gap: toRem(40);
+		}
+
+		&--left {
+			border-right: none;
+			border-radius: toRem(43) 0 0 toRem(43);
+			background-color: var(--light);
+			@media (max-width: toEm(910)) {
+				border: toRem(2) solid var(--green);
+				border-radius: toRem(43);
+			}
+		}
+		&--center {
+			min-height: toRem(981);
+			padding-bottom: toRem(120);
+			@media (max-width: toEm(1200)) {
+				min-height: toRem(900);
+			}
+			@media (max-width: toEm(910)) {
+				min-height: auto;
+				padding-block: toRem(30);
+			}
+		}
+		&--right {
+			border-left: none;
+			border-radius: 0 toRem(43) toRem(43) 0;
+			background-color: var(--light);
+			@media (max-width: toEm(910)) {
+				border: toRem(2) solid var(--green);
+				border-radius: toRem(43);
+			}
+		}
+		@media (any-hover: hover) {
+			&:hover {
+				background-color: var(--light-green);
+			}
+		}
+	}
+	&__inner {
+		flex-grow: 1;
+	}
+	&__heading {
+		font-family: var(--second-family);
+		font-weight: 400;
+		@include adaptiveValue("font-size", 40, 25);
+		text-align: center;
+		&:not(:last-child) {
+			@include adaptiveValue("margin-bottom", 24, 15);
+		}
+	}
+	&__price {
+		text-align: center;
+		span {
+			display: block;
+			font-weight: 600;
+			@include adaptiveValue("font-size", 45, 28);
+			margin-bottom: toRem(5);
+		}
+		&:not(:last-child) {
+			@include adaptiveValue("margin-bottom", 50, 25);
+		}
+	}
+	&__info {
+		&:not(:last-child) {
+			@include adaptiveValue("margin-bottom", 60, 30);
+		}
+	}
+	&__item {
+		position: relative;
+		padding-inline: toRem(34) toRem(17);
+		// list-style:disc;
+		&:not(:last-child) {
+			@include adaptiveValue("margin-bottom", 24, 10);
+		}
+		&::before {
+			content: "";
+			position: absolute;
+			top: toRem(7);
+			left: toRem(17);
+			width: toRem(5);
+			aspect-ratio: 1;
+			border-radius: 50%;
+			background-color: var(--green);
+		}
+	}
+	&__best-for {
+		border-top: toRem(2) solid var(--green);
+		@include adaptiveValue("padding-top", 55, 25);
+		span {
+			font-weight: 600;
+		}
+	}
+	&__btn {
+		border: toRem(2) solid var(--green);
+		border-radius: toRem(50);
+		padding: toRem(18) toRem(18);
+		transition: all 0.3s;
+		@media (any-hover: hover) {
+			.pricing__link:hover & {
+				color: var(--light);
+				background-color: var(--green);
+			}
+		}
+	}
+}

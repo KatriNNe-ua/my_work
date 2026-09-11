@@ -1,0 +1,126 @@
+@use "./mixins" as *;
+
+.insights {
+	@include adaptiveValue("padding-top", 202, 100);
+	@include adaptiveValue("padding-bottom", 139, 65);
+	position: relative;
+
+	&::before {
+		content: "";
+		position: absolute;
+		width: 100%;
+		min-height: 92.581818%; /* 1273/1375 */
+		bottom: 0;
+		left: 0;
+		background-color: var(--grey);
+		z-index: -1;
+		@media (max-width: toEm(1329.98)) {
+			min-height: 96%;
+		}
+		@media (max-width: toEm(991.98)) {
+			min-height: 97%;
+		}
+		@media (max-width: toEm(889.98)) {
+			min-height: 98%;
+		}
+	}
+	&::after {
+		content: "";
+		position: absolute;
+		width: 100%;
+		height: toRem(203);
+		top: 0;
+		right: 67%;
+		background-color: var(--grey);
+		z-index: -1;
+		border-radius: 0 toRem(968) toRem(968) 0;
+		@media (max-width: toEm(991.98)) {
+			height: toRem(120);
+					right: 60%;
+		}
+	}
+
+	&__container {
+	}
+	&__block-header {
+		&:not(:last-child) {
+			@include adaptiveValue("margin-bottom", 100, 50);
+		}
+	}
+	&__list {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(min(100%, toRem(420)), 1fr));
+		gap: toRem(20);
+	}
+	&__card {
+		padding: toRem(30) toRem(30) toRem(70);
+		background-color: var(--light);
+		display: flex;
+		flex-direction: column;
+		@include adaptiveValue("gap", 30, 18);
+		border-radius: toRem(50);
+		border: toRem(2) solid var(--light);
+		transition: all 0.3s;
+		@media (any-hover: hover) {
+			&:hover {
+				border: toRem(2) solid var(--green);
+			}
+		}
+	}
+	&__link-img {
+		width: 100%;
+		aspect-ratio: 1;
+		border-radius: toRem(28);
+		overflow: hidden;
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			transition: all 0.3s;
+		}
+		@media (any-hover: hover) {
+			&:hover img {
+				transform: scale(1.02);
+			}
+		}
+	}
+	&__heading {
+		font-family: var(--second-family);
+		font-size: 40px;
+		@include adaptiveValue("font-size", 40, 22);
+		flex-grow: 1;
+	}
+	&__btn {
+		font-weight: 500;
+		font-size: toRem(22);
+		line-height: 1.27;
+		text-align: center;
+		display: flex;
+		gap: toRem(10);
+		align-items: center;
+
+
+		border-radius: toRem(50);
+		padding: toRem(18) toRem(40);
+		max-width: fit-content;
+		background-color: var(--light-green);
+		transition: background-color 0.3s;
+		border: toRem(2) solid var(--light-green);
+		@media (max-width: toEm(531)) {
+			max-width: 100%;
+			justify-content: center;
+		}
+		@media (any-hover: hover) {
+			&:hover {
+				border: toRem(2) solid var(--green);
+			}
+		}
+		&::after {
+			content: "";
+			width: toRem(22);
+			aspect-ratio: 1;
+			background: url("../images/icons/array.svg") center center/contain no-repeat;
+			transform: rotate(-180deg);
+		}
+	}
+}

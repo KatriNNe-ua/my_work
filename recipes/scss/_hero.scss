@@ -1,0 +1,321 @@
+@use "./mixins" as *;
+
+
+.hero {
+	@include adaptiveValue("padding-top", 234, 100);
+	@include adaptiveValue("padding-bottom", 241, 100);
+	position: relative;
+
+	&::before {
+		content: "";
+		position: absolute;
+		width: 100%;
+		min-height: 91.803279%; /* 1120/1220 */
+		top: 0;
+		left: 0;
+		// background-color: var(--grey);
+		z-index: -1;
+		@media (max-width: toEm(991.98)) {
+			min-height: 95%;
+		}
+		@media (max-width: toEm(625)) {
+			min-height: 97%;
+		}
+	}
+	&::after {
+		content: "";
+		position: absolute;
+		width: 100%;
+		height: toRem(203);
+		bottom: 0;
+		left: 67%;
+		background-color: var(--grey);
+		z-index: -1;
+		border-radius: toRem(968) 0 0 toRem(968);
+		@media (max-width: toEm(991.98)) {
+			height: toRem(100);
+			left: 60%;
+		}
+	}
+	&__container {
+		color: var(--green);
+		text-transform: capitalize;
+		position: relative;
+	}
+
+	&__decoration {
+	}
+
+	&__title {
+		max-width: toRem(868);
+		margin: 0 auto;
+		font-family: var(--second-family);
+		font-weight: 500;
+		@include adaptiveValue("font-size", 61, 30);
+		text-align: center;
+		&:not(:last-child) {
+			margin-bottom: toRem(40);
+		}
+	}
+	&__block {
+		display: grid;
+		grid-template-columns: 1fr 27.42515% 1fr;
+		@media (max-width: toEm(991.98)) {
+			grid-template-columns: 1fr 2fr 1fr;
+		}
+		@media (max-width: toEm(625)) {
+			grid-template-columns: 1fr;
+			gap: toRem(15);
+		}
+	}
+	&__inner {
+		display: grid;
+		grid-template-columns: 290fr 275fr;
+		gap: toRem(30);
+		@media (max-width: toEm(1100)) {
+			gap: toRem(15);
+		}
+
+		&--first .hero__full-img {
+			margin-top: toRem(98);
+			aspect-ratio: 275/461;
+			@media (max-width: toEm(991.98)) {
+				margin-top: 0;
+			}
+		}
+		&--last .hero__card {
+			margin-top: toRem(98);
+			aspect-ratio: 290/461;
+			@media (max-width: toEm(991.98)) {
+				margin-top: 0;
+			}
+		}
+		&--last {
+			@media (max-width: toEm(991.98)) {
+				display: flex;
+				flex-direction: column-reverse;
+			}
+			@media (max-width: toEm(625)) {
+				display: grid;
+				grid-template-columns: 1fr 1fr;
+				align-items: center;
+			}
+		}
+		@media (max-width: toEm(991.98)) {
+			grid-template-columns: 1fr;
+		}
+		@media (max-width: toEm(625)) {
+			grid-template-columns: 1fr 1fr;
+			align-items: center;
+		}
+	}
+	&__card {
+	}
+	&__full-img {
+		max-width: toRem(275);
+		aspect-ratio: 275/491;
+		width: 100%;
+		border-radius: toRem(42);
+		overflow: hidden;
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
+	}
+	&__center {
+		display: flex;
+		flex-direction: column;
+	}
+	&__text {
+		font-weight: 400;
+		@include adaptiveValue("font-size", 25, 20);
+		text-align: center;
+	}
+	&__btns {
+		flex-grow: 1;
+		@include adaptiveValue("padding-block", 50, 25);
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: toRem(25);
+		font-size: toRem(22);
+		line-height: 1.27;
+		margin-inline: toRem(30);
+		@media (max-width: toEm(1100)) {
+			margin-inline: toRem(15);
+		}
+		@media (max-width: toEm(500)) {
+			margin-inline: 0;
+		}
+	}
+	&__btn {
+		font-weight: 500;
+		width: fit-content;
+		text-align: center;
+		border-radius: toRem(50);
+		padding: toRem(18) toRem(40);
+		@media (max-width: toEm(500)) {
+			width: 100%;
+		}
+	}
+	&__btn--border {
+		border: toRem(2) solid var(--green);
+		transition: all 0.3s;
+		@media (any-hover: hover) {
+			&:hover {
+				background-color: var(--green);
+				color: var(--light);
+			}
+		}
+	}
+	&__btn--green {
+		background-color: var(--light-green);
+		border: toRem(2) solid var(--light-green);
+		transition: all 0.3s;
+		@media (any-hover: hover) {
+			&:hover {
+				border: toRem(2) solid var(--green);
+			}
+		}
+	}
+	&__bottom-block {
+		@include adaptiveValue("padding-block", 50, 10);
+		border-radius: toRem(34);
+		margin-inline: toRem(30);
+		font-family: var(--second-family);
+		font-weight: 500;
+		@include adaptiveValue("font-size", 61, 30);
+		text-align: center;
+		color: var(--light-green);
+		background-color: var(--green);
+		display: flex;
+		flex-direction: column;
+		gap: toRem(13);
+		span {
+			display: block;
+			@include adaptiveValue("font-size", 26, 20);
+		}
+		@media (max-width: toEm(1100)) {
+			margin-inline: toRem(15);
+		}
+		@media (max-width: toEm(500)) {
+			margin-inline: 0;
+		}
+	}
+}
+.card-hero {
+	border-radius: toRem(34);
+	background-color: var(--light);
+	padding: toRem(15);
+	max-width: toRem(290);
+	align-self: start;
+	width: 100%;
+	@media (max-width: toEm(625)) {
+		align-self: center;
+	}
+	&__number {
+		padding-top: toRem(10);
+		font-family: var(--second-family);
+		font-weight: 500;
+		@include adaptiveValue("font-size", 61, 30);
+		&:not(:last-child) {
+			margin-bottom: toRem(10);
+		}
+	}
+	&__info {
+		font-weight: 400;
+		@include adaptiveValue("font-size", 26, 20);
+		&:not(:last-child) {
+			margin-bottom: toRem(25);
+		}
+	}
+	&__img {
+		max-width: toRem(260);
+		aspect-ratio: 260/293;
+		width: 100%;
+		border-radius: toRem(15);
+		overflow: hidden;
+
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
+	}
+}
+
+.icon-hero {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	left: 0;
+	top: 0;
+	z-index: -1;
+	@media (max-width: toEm(991.98)) {
+		display: none;
+	}
+	&__item {
+		position: absolute;
+		aspect-ratio: 1;
+		border-radius: 50%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		left: 0;
+		top: 0;
+	}
+	&__item--1 {
+		width: toRem(66);
+		background-color: var(--light-green);
+		left: 13%;
+		top: 6.5%;
+		@media (max-width: toEm(1350)) {
+			left: 10%;
+			top: 9%;
+		}
+		img {
+			width: toRem(41);
+			aspect-ratio: 1;
+			object-fit: contain;
+		}
+	}
+	&__item--2 {
+		width: toRem(50);
+		border: toRem(1) solid var(--green);
+		left: 20%;
+		top: 20%;
+		img {
+			width: toRem(31);
+			aspect-ratio: 1;
+			object-fit: contain;
+		}
+	}
+	&__item--3 {
+		width: toRem(83);
+		background-color: var(--light);
+		left: 78%;
+		top: 6.5%;
+		img {
+			width: toRem(52);
+			aspect-ratio: 1;
+			object-fit: contain;
+		}
+			@media (max-width: toEm(1350)) {
+			left: 85%;
+					top: 7.5%;
+		}
+	}
+	&__item--4 {
+		width: toRem(50);
+		background-color: var(--green);
+		left: 75%;
+		top: 23%;
+		img {
+			width: toRem(30);
+			aspect-ratio: 1;
+			object-fit: contain;
+		}
+	}
+}

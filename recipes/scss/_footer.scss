@@ -1,0 +1,126 @@
+@use "./mixins" as *;
+
+.footer {
+	@include adaptiveValue("padding-top", 100, 50);
+	@include adaptiveValue("padding-bottom", 110, 55);
+	background-color: var(--green);
+	font-size: toRem(22);
+	@media (max-width: toEm(767.98)) {
+		font-size: toRem(18);
+	}
+	&__container {
+		color: var(--light-green);
+		display: flex;
+		flex-direction: column;
+		@include adaptiveValue("gap", 73, 30);
+	}
+	&__up {
+		display: grid;
+		grid-template-columns: auto 1fr 1fr auto;
+		justify-content: space-between;
+		@include adaptiveValue("column-gap", 90, 30);
+		row-gap: toRem(35);
+		@media (max-width: toEm(767.98)) {
+			grid-template-columns: auto 1fr 1fr;
+		}
+		@media (max-width: toEm(600)) {
+			grid-template-columns: 1fr 1fr;
+	
+		}
+			@media (max-width: toEm(500)) {
+			grid-template-columns: 1fr;
+	
+		}
+	}
+	&__logo {
+		filter: brightness(0) saturate(100%) invert(84%) sepia(47%) saturate(419%) hue-rotate(19deg) brightness(104%)
+			contrast(90%);
+		max-width: toRem(74);
+		aspect-ratio: 74/50;
+		width: 100%;
+		z-index: 5;
+
+		@media (any-hover: hover) {
+			&:hover {
+				filter: brightness(0) saturate(100%) invert(92%) sepia(0%) saturate(7096%) hue-rotate(182deg)
+					brightness(105%) contrast(95%);
+			}
+		}
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: contain;
+		}
+	}
+	&__list {
+		display: grid;
+		grid-template-columns: auto 1fr;
+		align-content: start;
+		@include adaptiveValue("column-gap", 90, 30);
+		@include adaptiveValue("row-gap", 40, 20);
+	}
+	&__item {
+	}
+	&__link {
+		text-decoration: underline;
+		transition: all 0.3s;
+		@media (any-hover: hover) {
+			&:hover {
+				color: var(--grey);
+			}
+		}
+	}
+	&__text {
+	}
+	&__social {
+	}
+	&__bottom {
+		line-height: 1.27;
+		color: var(--light);
+		a {
+			text-decoration: underline;
+			transition: all 0.3s;
+			@media (any-hover: hover) {
+				&:hover {
+					color: var(--light-green);
+				}
+			}
+		}
+	}
+}
+.social {
+	display: flex;
+	flex-direction: column;
+	gap: toRem(15);
+	@media (max-width: toEm(767.98)) {
+		flex-direction: row;
+		grid-column: span 3;
+	}
+	@media (max-width: toEm(600)) {
+				grid-column: span 1;
+	
+		}
+	&__item {
+	}
+	&__link {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		border-radius: 50%;
+		width: toRem(50);
+		aspect-ratio: 1;
+		background-color: var(--light);
+		transition: all 0.3s;
+		@media (any-hover: hover) {
+			&:hover {
+				background-color: var(--light-green);
+			}
+		}
+		img {
+			max-width: toRem(29);
+			aspect-ratio: 1;
+			width: 100%;
+		}
+	}
+}
+

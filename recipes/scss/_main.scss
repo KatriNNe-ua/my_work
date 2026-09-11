@@ -1,0 +1,74 @@
+@use "./mixins" as *;
+
+@import url("https://fonts.googleapis.com/css?family=Work+Sans:regular,500,600&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Syne:regular,500&display=swap");
+
+/* Основні стилі */
+body {
+	background-color: var(--light);
+	font-family: "Work Sans", sans-serif;
+	color: var(--green);
+
+	opacity: 0;
+	transition: opacity 1.5s;
+	.loaded & {
+		opacity: 1;
+	}
+	.lock & {
+		overflow: hidden;
+		touch-action: none;
+		overscroll-behavior: none;
+	}
+}
+
+.wrapper {
+	min-height: 100%;
+	overflow: clip; /* clip */
+
+	display: flex;
+	flex-direction: column;
+}
+.wrapper > main {
+	flex-grow: 1;
+}
+
+/* --------------------- */
+[class*="__container"] {
+	padding-inline: toRem(15);
+	max-width: toRem(1670);
+	margin: 0 auto;
+}
+/* --------------------- */
+
+// &:not(:last-child) {
+// 			margin-bottom: m.toRem(43);
+// 		}
+
+// @include m.adaptiveValue("padding-top", 116, 70);
+//----------------------------------------------------------
+
+.block-header {
+	display: flex;
+	gap: toRem(38);
+	align-items: center;
+	&__title {
+		display: flex;
+		gap: toRem(38);
+		align-items: center;
+		font-family: var(--second-family);
+		font-weight: 500;
+		@include adaptiveValue("font-size", 55, 30);
+		&::after {
+			content: "";
+			height: toRem(100);
+			width: toRem(1);
+			background-color: var(--green);
+			transform: rotate(20deg);
+		}
+	}
+	&__info {
+		font-weight: 400;
+		@include adaptiveValue("font-size", 22, 18);
+		max-width: toRem(435);
+	}
+}

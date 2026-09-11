@@ -1,0 +1,211 @@
+"use strict";
+
+window.addEventListener("load", windowLoad);
+
+function windowLoad() {
+  const html = document.documentElement;
+  if (html) html.classList.add("loaded");
+  document.addEventListener("click", documentActions);
+  actionSwiper();
+  faqBuild();
+}
+
+function documentActions(e) {
+  const targetEl = e.target;
+  if (targetEl.closest(".icon-menu")) {
+    const html = document.documentElement;
+    html.classList.toggle("menu-open");
+    html.classList.toggle("lock");
+  }
+
+  //=============================================
+//   if (targetEl.closest("summary")) {
+//     e.preventDefault();
+
+//     const spollerTitle = targetEl.closest("summary");
+//     const spoller = spollerTitle.closest("details");
+//     const spollerBody = spollerTitle.nextElementSibling;
+
+//     !spollerBody.hidden
+//       ? spoller.classList.contains("--active")
+//         ? setTimeout(() => {
+//             spollerBody.hidden = true;
+//           }, 500)
+//         : (spollerBody.hidden = true)
+//       : null;
+
+//     !spoller.open
+//       ? (spoller.open = true)
+//       : setTimeout(() => {
+//           spoller.open = false;
+//         }, 500);
+
+//     _slideToggle(spollerBody);
+
+//     spoller.classList.toggle("--active");
+//   }
+if (targetEl.closest(".item-faq")) {
+  e.preventDefault();
+
+  const itemFaq = targetEl.closest(".item-faq");
+  const spollerTitle = itemFaq.querySelector("summary");
+  const spoller = spollerTitle.closest("details");
+  const spollerBody = spollerTitle.nextElementSibling;
+
+  !spollerBody.hidden
+    ? spoller.classList.contains("--active")
+      ? setTimeout(() => {
+          spollerBody.hidden = true;
+        }, 500)
+      : (spollerBody.hidden = true)
+    : null;
+
+  !spoller.open
+    ? (spoller.open = true)
+    : setTimeout(() => {
+        spoller.open = false;
+      }, 500);
+
+  _slideToggle(spollerBody);
+
+  spoller.classList.toggle("--active");
+}
+}
+
+function actionSwiper() {
+  const textSwiper = new Swiper(".text-slider", {
+    slidesPerView: 1,
+    speed: 800,
+    effect: "fade",
+    fadeEffect: {
+      crossFade: true,
+    },
+
+    navigation: {
+      nextEl: ".text-slider__button-next",
+      prevEl: ".text-slider__button-prev",
+    },
+  });
+
+  const imageSwiper = new Swiper(".img-slider", {
+    effect: "cards",
+    grabCursor: true,
+    cardsEffect: {
+      perSlideOffset: 15,
+      perSlideRotate: 4,
+      slideShadows: false,
+    },
+    pagination: {
+      el: ".pagination-slider",
+      type: "fraction",
+
+      formatFractionCurrent(number) {
+        return String(number).padStart(2, "0");
+      },
+
+      formatFractionTotal(number) {
+        return String(number).padStart(2, "0");
+      },
+    },
+  });
+
+  textSwiper.controller.control = imageSwiper;
+  imageSwiper.controller.control = textSwiper;
+}
+
+// Допоміжні модулі плавного розкриття та закриття об'єкта ======================================================================================================================================================================
+let _slideUp = (target, duration = 500, showmore = 0) => {
+  if (!target.classList.contains("_slide")) {
+    target.classList.add("_slide");
+    target.style.transitionProperty = "height, margin, padding";
+    target.style.transitionDuration = duration + "ms";
+    target.style.height = `${target.offsetHeight}px`;
+    target.offsetHeight;
+    target.style.overflow = "hidden";
+    target.style.height = showmore ? `${showmore}px` : `0px`;
+    target.style.paddingTop = 0;
+    target.style.paddingBottom = 0;
+    target.style.marginTop = 0;
+    target.style.marginBottom = 0;
+    window.setTimeout(() => {
+      target.hidden = !showmore ? true : false;
+      !showmore ? target.style.removeProperty("height") : null;
+      target.style.removeProperty("padding-top");
+      target.style.removeProperty("padding-bottom");
+      target.style.removeProperty("margin-top");
+      target.style.removeProperty("margin-bottom");
+      !showmore ? target.style.removeProperty("overflow") : null;
+      target.style.removeProperty("transition-duration");
+      target.style.removeProperty("transition-property");
+      target.classList.remove("_slide");
+      // Створюємо подію
+      document.dispatchEvent(
+        new CustomEvent("slideUpDone", {
+          detail: {
+            target: target,
+          },
+        }),
+      );
+    }, duration);
+  }
+};
+let _slideDown = (target, duration = 500, showmore = 0) => {
+  if (!target.classList.contains("_slide")) {
+    target.classList.add("_slide");
+    target.hidden = target.hidden ? false : null;
+    showmore ? target.style.removeProperty("height") : null;
+    let height = target.offsetHeight;
+    target.style.overflow = "hidden";
+    target.style.height = showmore ? `${showmore}px` : `0px`;
+    target.style.paddingTop = 0;
+    target.style.paddingBottom = 0;
+    target.style.marginTop = 0;
+    target.style.marginBottom = 0;
+    target.offsetHeight;
+    target.style.transitionProperty = "height, margin, padding";
+    target.style.transitionDuration = duration + "ms";
+    target.style.height = height + "px";
+    target.style.removeProperty("padding-top");
+    target.style.removeProperty("padding-bottom");
+    target.style.removeProperty("margin-top");
+    target.style.removeProperty("margin-bottom");
+    window.setTimeout(() => {
+      target.style.removeProperty("height");
+      target.style.removeProperty("overflow");
+      target.style.removeProperty("transition-duration");
+      target.style.removeProperty("transition-property");
+      target.classList.remove("_slide");
+      // Створюємо подію
+      document.dispatchEvent(
+        new CustomEvent("slideDownDone", {
+          detail: {
+            target: target,
+          },
+        }),
+      );
+    }, duration);
+  }
+};
+let _slideToggle = (target, duration = 500) => {
+  if (target.hidden) {
+    return _slideDown(target, duration);
+  } else {
+    return _slideUp(target, duration);
+  }
+};
+
+function faqBuild() {
+  const faqItems = document.querySelectorAll(".item-faq");
+  if (faqItems.length) {
+    const faqBody = document.querySelector(".faq__body");
+    let faqTemplate = `<div class="faq__column">`;
+    faqItems.forEach((faqItem, index) => {
+      faqTemplate += faqItem.outerHTML; // Отрумуємо рядок(String), повну HTML-структуру з об'єкту
+      ++index === Math.ceil(faqItems.length / 2)
+        ? (faqTemplate += `</div><div class="faq__column">`)
+        : null;
+    });
+    faqTemplate += `</div>`;
+    faqBody.innerHTML = faqTemplate;
+  }
+}

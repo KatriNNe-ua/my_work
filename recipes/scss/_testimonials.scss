@@ -1,0 +1,72 @@
+@use "./mixins" as *;
+
+
+
+.testimonials {
+	@include adaptiveValue("padding-block", 100, 50);
+	&__container {
+	}
+	&__block-header {
+		&:not(:last-child) {
+			@include adaptiveValue("margin-bottom", 100, 50);
+		}
+	}
+	&__list {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(min(100%, toRem(300)), 1fr));
+		gap: toRem(20);
+	}
+	&__item {
+		@include adaptiveValue("padding-block", 60, 30);
+		@include adaptiveValue("padding-inline", 50, 25);
+		background-color: var(--grey);
+		border-radius: toRem(24);
+		font-weight: 400;
+		font-size: toRem(22);
+		transition: all 0.3s;
+		@media (any-hover: hover) {
+			&:hover {
+				background-color: var(--green);
+				color: var(--light);
+				.testimonials__text::after {
+					filter: brightness(0) saturate(100%) invert(100%) sepia(28%) saturate(3297%) hue-rotate(359deg) brightness(104%) contrast(84%);
+				}
+			}
+		}
+	}
+	&__text {
+		position: relative;
+		&:not(:last-child) {
+			margin-bottom: toRem(51);
+		}
+		&::after {
+			content: "";
+			width: toRem(29);
+			aspect-ratio: 29/21;
+			position: absolute;
+			right: 0;
+			bottom: toRem(-36);
+			background: url("../images/icons/”.svg") center center/contain no-repeat;
+		
+		}
+	}
+	&__block {
+		display: flex;
+		gap: toRem(15);
+		align-items: center;
+	}
+	&__img {
+		max-width: toRem(60);
+		width: 100%;
+		aspect-ratio: 1;
+		border-radius: 50%;
+		overflow: hidden;
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
+	}
+	&__name {
+	}
+}

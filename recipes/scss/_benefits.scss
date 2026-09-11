@@ -1,0 +1,103 @@
+@use "./mixins" as *;
+
+.benefits {
+	@include adaptiveValue("padding-top", 210, 105);
+	@include adaptiveValue("padding-bottom", 110, 65);
+	&__container {
+	}
+	&__block-header {
+		&:not(:last-child) {
+			@include adaptiveValue("margin-bottom", 100, 50);
+		}
+	}
+	&__list {
+		column-gap: toRem(21);
+		row-gap: toRem(41);
+		flex-wrap: wrap;
+		display: flex;
+		justify-content: space-evenly;
+	}
+
+	&__item {
+		flex-basis: toRem(394);
+		font-family: var(--font-family);
+		font-weight: 400;
+		padding: toRem(50);
+		border-radius: toRem(240);
+		display: flex;
+		flex-direction: column;
+		@include adaptiveValue("gap", 40, 20);
+		align-items: center;
+		justify-content: center;
+		@media (max-width: toEm(850)) {
+			padding: toRem(25);
+			max-width: toRem(250);
+		}
+	}
+
+	&__header {
+		@include adaptiveValue("font-size", 40, 25);
+		.benefits__item--green & {
+			color: var(--light-green);
+		}
+	}
+	&__text {
+		font-size: toRem(22);
+		@media (max-width: toEm(767.98)) {
+			font-size: toRem(18);
+		}
+		.benefits__item--green & {
+			color: var(--light);
+		}
+	}
+	&__img {
+		max-width: toRem(394);
+		border-radius: toRem(240);
+		width: 100%;
+		aspect-ratio: 394/546;
+		overflow: hidden;
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
+		@media (max-width: toEm(850)) {
+			max-width: toRem(250);
+		}
+	}
+	&__item--color {
+		padding-block: toRem(140);
+		@media (max-width: toEm(850)) {
+			padding-block: toRem(80);
+		}
+	}
+	&__item--light-green {
+		background-color: var(--light-green);
+	}
+	&__item--grey {
+		background-color: var(--grey);
+	}
+	&__item--green {
+		background-color: var(--green);
+		margin-top: toRem(-151);
+		@media (max-width: toEm(1668.8)) {
+			margin-top: 0;
+		}
+	}
+	&__small-img {
+		aspect-ratio: 1;
+		max-width: toRem(394);
+		width: 100%;
+		overflow: hidden;
+		border-radius: 50%;
+		align-self: center;
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
+		@media (max-width: toEm(850)) {
+			max-width: toRem(250);
+		}
+	}
+}
